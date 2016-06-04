@@ -10,9 +10,14 @@ namespace RomanNumerals
             Dictionary<int, string> uniqueCharacters = new Dictionary<int, string>
             {
                 {1, "I" },
+                {4, "IV" },
                 {5, "V" },
+                {9, "IX" },
                 {10, "X" },
-                {50, "L" }
+                {50, "L" },
+                {100, "C" },
+                {500, "D" },
+                {1000, "M" }
             };
 
             foreach (var uniqueCharacter in uniqueCharacters.Keys)
@@ -26,12 +31,6 @@ namespace RomanNumerals
 
             if (arabic == 2)
                 return "II";
-
-            if (arabic == 4)
-                return "IV";
-
-            if (arabic == 9)
-                return "IX";
 
             return "";
         }

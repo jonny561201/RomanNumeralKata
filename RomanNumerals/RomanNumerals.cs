@@ -23,8 +23,6 @@ namespace RomanNumerals
 
         public string ConvertToRomanNumeral(int arabic)
         {
-            var romanNumeral = "";
-
             foreach (var uniqueCharacter in _uniqueCharacters.Keys)
             {
                 if (arabic == uniqueCharacter)
@@ -33,11 +31,13 @@ namespace RomanNumerals
 
             _remainder = arabic;
 
-            return BuildRomanNumeral(romanNumeral);
+            return BuildRomanNumeral();
         }
 
-        private string BuildRomanNumeral(string romanNumeral)
+        private string BuildRomanNumeral()
         {
+            var romanNumeral = "";
+
             foreach (var uniqueCharacter in _uniqueCharacters)
             {
                 var workingNum = _remainder;

@@ -1,38 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace RomanNumerals
 {
     public class RomanNumeralConverter
     {
-        internal String Convert(int arabic)
-        {
-            Dictionary<int, string> uniqueCharacters = new Dictionary<int, string>
+        Dictionary<int, string> _uniqueCharacters = new Dictionary<int, string>
             {
-                {1, "I" },
-                {4, "IV" },
-                {5, "V" },
-                {9, "IX" },
-                {10, "X" },
-                {50, "L" },
-                {100, "C" },
+                {1000, "M" },
+                {900, "CM" },
                 {500, "D" },
-                {1000, "M" }
+                {100, "C" },
+                {50, "L" },
+                {40, "XL" },
+                {10, "X" },
+                {9, "IX" },
+                {5, "V" },
+                {4, "IV" },
+                {1, "I" }
             };
 
-            foreach (var uniqueCharacter in uniqueCharacters.Keys)
+        private int _remainder;
+
+        public string ConvertToRomanNumeral(int arabic)
+        {
+            var romanNumeral = "";
+
+            foreach (var uniqueCharacter in _uniqueCharacters.Keys)
             {
                 if (arabic == uniqueCharacter)
-                    return uniqueCharacters[uniqueCharacter];
-
-                // when one less...
-
+                    return _uniqueCharacters[uniqueCharacter];
             }
 
-            if (arabic == 2)
-                return "II";
+            _remainder = arabic;
 
-            return "";
+            foreach (var uniqueCharacter in _uniqueCharacters)
+            {
+                var workingNum = _remainder;
+
+                if (uniqueCharacter.Key <= _remainder)
+                {
+                    while (workingNum > 0)
+                    {
+                        workingNum = workingNum - uniqueCharacter.Key;
+                        if (workingNum >= 0)
+                        {
+                            _remainder -= uniqueCharacter.Key;
+                            romanNumeral += uniqueCharacter.Value;
+                        }
+                    }
+                }
+            }
+
+            return romanNumeral;
         }
 
     }

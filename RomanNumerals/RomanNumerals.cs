@@ -33,6 +33,11 @@ namespace RomanNumerals
 
             _remainder = arabic;
 
+            return BuildRomanNumeral(romanNumeral);
+        }
+
+        private string BuildRomanNumeral(string romanNumeral)
+        {
             foreach (var uniqueCharacter in _uniqueCharacters)
             {
                 var workingNum = _remainder;
@@ -50,9 +55,7 @@ namespace RomanNumerals
                     }
                 }
             }
-
             return romanNumeral;
         }
-
     }
 }

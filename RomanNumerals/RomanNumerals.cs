@@ -10,6 +10,7 @@ namespace RomanNumerals
                 {900, "CM" },
                 {500, "D" },
                 {100, "C" },
+                {90, "XC" },
                 {50, "L" },
                 {40, "XL" },
                 {10, "X" },
@@ -21,7 +22,7 @@ namespace RomanNumerals
 
         private int _remainder;
 
-        public string ConvertToRomanNumeral(int arabic)
+        public string Convert(int arabic)
         {
             foreach (var uniqueCharacter in _uniqueCharacters.Keys)
             {
